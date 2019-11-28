@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 WORKDIR /home
-# if not in China, feel free to comment the following two lines
+# if not in China, you can delete the following two lines
 COPY ./sources.list.163 ./sources.list.163
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && mv sources.list.163 /etc/apt/sources.list
 
