@@ -33,5 +33,12 @@ def test_db():
     db.write()
     return (mln, db)
 
+def test_reasoning():
+    mln = MLN.load(files='./mln/alarm.mln')
+    db = Database.load(mln, './mln/alarm.db')
+    result = MLNQuery(mln=mln, db=db).run()
+    result.write()
+
 if __name__ == "__main__":
     test_db()
+    test_reasoning()
