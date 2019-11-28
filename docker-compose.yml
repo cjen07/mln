@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  mln:
+    image: mln
+    container_name: my_mln
+    volumes:
+      - ./mln:/home/mln
+    stdin_open: true
+    tty: true
