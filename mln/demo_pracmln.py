@@ -1,4 +1,6 @@
 from pracmln import MLN
+from pracmln import Database
+from pracmln import MLNQuery
 
 # from docs: http://www.pracmln.org/apidoc.html
 
@@ -8,7 +10,7 @@ def test_mln():
     mln << 'bar(y)' # another pred declaration
     mln << 'bar(?x) => bar(?y).' # hard logical constraint
     mln << 'logx(.75)/log(.25) foo(?x)' # weighted formula
-    print('mln write')
+    print('mln write:')
     mln.write()
     print('mln predicates:')
     for pred in mln.predicates:
@@ -16,10 +18,20 @@ def test_mln():
     print('mln formulas:')
     for f in mln.formulas:
         print(f)
-        f.print_structure()   
+        f.print_structure()  
+    return mln 
 
 def test_db():
-    pass
+    mln = test_mln()
+    db = Database(mln)
+    db << 'foo(X)'
+    db['bar(Y)'] = .0
+    print('db write:')
+    db.write()
+    del db['bar(Y)']
+    print('db write:')
+    db.write()
+    return (mln, db)
 
 if __name__ == "__main__":
-    test_mln()
+    test_db()

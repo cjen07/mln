@@ -22,7 +22,8 @@ COPY ./install.sh ./install.sh
 RUN sh ./install.sh
 
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -y python3-tk
+RUN apt-get install -y python3-tk language-pack-en
+ENV LC_ALL='en_US.utf8'
 
 WORKDIR /home
 
